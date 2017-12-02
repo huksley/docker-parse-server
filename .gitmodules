@@ -1,0 +1,8 @@
+[submodule "parse-server"]
+	path = parse-server
+	url = https://github.com/parse-community/parse-server.git
+	branch = 2.7.1
+[submodule "parse-dashboard"]
+	path = parse-dashboard
+	url = https://github.com/parse-community/parse-dashboard.git
+	branch = 1.1.2
