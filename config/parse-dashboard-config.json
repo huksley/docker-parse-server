@@ -1,0 +1,18 @@
+{
+  "apps": [
+    {
+      "serverURL": "http://192.168.99.100:1337/parse",
+      "appId": "DA5AC2FF-8F44-4082-8E5C-DEADBEEF6606",
+      "masterKey": "test123",
+      "appName": "TestApp",
+      "iconName": "TestApp.png"
+    }
+  ],
+  "users":[
+  	{
+  		"user": "test",
+  		"pass": "123"
+  	}
+  ],
+  "iconsFolder": "/src/Parse-Dashboard/icons"
+}

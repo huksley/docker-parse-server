@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  mongo-parse-server:
+    image: mongo
+    container_name: parse-mongodb
+  parse-server:
+    build: ./parse-server
+    image: parse-server:2.7.1
+    container_name: parse-server-2.7.1
+    links:
+      - mongo-parse-server:mongo
+    environment:
+      - PORT=1337
+      - PARSE_SERVER_APPLICATION_ID=DA5AC2FF-8F44-4082-8E5C-DEADBEEF6606
+      - PARSE_SERVER_MASTER_KEY=test123
+      - PARSE_SERVER_DATABASE_URI=mongodb://mongo/parse
+#      - PARSE_PUBLIC_SERVER_URL='publicServerURL'
+      - PARSE_SERVER_HOST=0.0.0.0
+    ports:
+      - 1337:1337
+  parse-dashboard:
+    build: ./parse-dashboard
+    image: parse-dashboard:1.1.2
+    container_name: parse-dashboard-1.1.2
+    volumes:
+      - /c/Users/ruslan/Devel/parseserver/config:/src/Parse-Dashboard/config
+      - /c/Users/ruslan/Devel/parseserver/config/icons:/src/Parse-Dashboard/icons
+    environment: 
+      - PARSE_DASHBOARD_ALLOW_INSECURE_HTTP=1
+      - MOUNT_PATH=/parse-dashboard
+      - PORT=4040
+    entrypoint: "/src/bin/parse-dashboard --config /src/Parse-Dashboard/config/parse-dashboard-config.json"
+    links:
+      - parse-server
+    ports:
+        - 4040:4040
